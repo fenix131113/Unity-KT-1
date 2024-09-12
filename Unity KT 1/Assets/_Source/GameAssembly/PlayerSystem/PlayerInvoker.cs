@@ -1,18 +1,54 @@
+using ShootSystem;
+using UnityEngine;
+
 namespace PlayerSystem
 {
-    public class PlayerInvoker
-    {
-        private PlayerMovement _playerMovement;
-        private Player _player;
+	public class PlayerInvoker
+	{
+		private Player _player;
+		private PlayerMovement _playerMovement;
+		private PlayerCombat _playerCombat;
 
-        public PlayerInvoker()
-        {
-            _playerMovement = new();
-        }
+		public void Construct(Player player, PlayerMovement playerMovement, PlayerCombat playerCombat)
+		{
+			_player = player;
+			_playerMovement = playerMovement;
+			_playerCombat = playerCombat;
+		}
 
-        public void InvokeJump()
-        {
-            _playerMovement.Jump(_player.RB, _player.JumpForce);
-        }
-    }
+		public void InvokeMove(Vector3 moveVector)
+		{
+			_playerMovement.Move(moveVector * _player.MovementSpeed);
+		}
+
+		public void InvokeJump()
+		{
+			_playerMovement.Jump(_player.JumpForce);
+		}
+
+		public void InvokeRotate(Vector2 rotateVector)
+		{
+			_playerMovement.Rotate(rotateVector * _player.RotationSpeed);
+		}
+
+		public void InvokeDisableMovement()
+		{
+			if (_playerMovement.CanControl)
+				_playerMovement.SwitchMovementControl(_player.StoppedMovementMessage);
+		}
+
+		public void InvokeEnableMovement()
+		{
+			if (!_playerMovement.CanControl)
+				_playerMovement.SwitchMovementControl(_player.StoppedMovementMessage);
+		}
+
+		public void InvokeShoot()
+		{
+			if (!_playerMovement.CanControl)
+				return;
+
+			_playerCombat.Shoot(_player.BulletPrefab);
+		}
+	}
 }
