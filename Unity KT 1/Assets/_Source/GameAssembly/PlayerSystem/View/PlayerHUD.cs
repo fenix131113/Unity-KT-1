@@ -14,15 +14,23 @@ namespace PlayerSystem.View
 
             Bind();
         }
+        
+        private void RefreshHUD()
+        {
+            StoppedMessage.SetActive(!_playerMovement.CanControl);
+        }
 
         private void Bind()
         {
             _playerMovement.OnControlStateChanged += RefreshHUD;
         }
 
-        private void RefreshHUD()
+        private void Expose()
         {
-            StoppedMessage.SetActive(!_playerMovement.CanControl);
+            _playerMovement.OnControlStateChanged -= RefreshHUD;
         }
+
+        private void OnDestroy() => Expose();
+        private void OnDisable() => Expose();
     }
 }
