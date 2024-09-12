@@ -1,3 +1,5 @@
+using System;
+using PlayerSystem.View;
 using UnityEngine;
 
 namespace PlayerSystem
@@ -6,6 +8,8 @@ namespace PlayerSystem
 	{
 		public bool CanControl { get; private set; } = true;
 		private readonly Rigidbody _rb;
+		
+		public event Action OnControlStateChanged;
 
 		public PlayerMovement(Rigidbody playerRb)
 		{
@@ -20,8 +24,8 @@ namespace PlayerSystem
 			if (!CanControl)
 				return;
 
-			Vector3 veclocity = _rb.transform.forward * movement.z + _rb.transform.right * movement.x;
-			_rb.velocity = new Vector3(veclocity.x, _rb.velocity.y, veclocity.z);
+			Vector3 velocity = _rb.transform.forward * movement.z + _rb.transform.right * movement.x;
+			_rb.velocity = new Vector3(velocity.x, _rb.velocity.y, velocity.z);
 		}
 
 		public void Jump(float jumpForce)
@@ -40,10 +44,10 @@ namespace PlayerSystem
 			_rb.transform.Rotate(new Vector3(0, rotation.x, 0));
 		}
 
-		public void SwitchMovementControl(GameObject controlMessage)
+		public void SwitchMovementControl()
 		{
 			CanControl = !CanControl;
-			controlMessage.SetActive(!CanControl);
+			OnControlStateChanged?.Invoke();
 		}
 	}
 }

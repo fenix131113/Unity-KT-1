@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputListener: {fileID: 1762190829}
-  playerCombat: {fileID: 1197224883}
   player: {fileID: 1197224881}
+  playerHud: {fileID: 462520255}
 --- !u!4 &179047292
 Transform:
   m_ObjectHideFlags: 0
@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 462520253}
   - component: {fileID: 462520252}
   - component: {fileID: 462520251}
+  - component: {fileID: 462520255}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -616,6 +617,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &462520255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462520250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5875c13cf58d5e54290a95326116ce4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <StoppedMessage>k__BackingField: {fileID: 286539147}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +1002,6 @@ GameObject:
   - component: {fileID: 1197224878}
   - component: {fileID: 1197224877}
   - component: {fileID: 1197224881}
-  - component: {fileID: 1197224883}
   - component: {fileID: 1197224882}
   m_Layer: 0
   m_Name: Player
@@ -1102,11 +1115,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MovementSpeed>k__BackingField: 4
-  <Rb>k__BackingField: {fileID: 1197224882}
   <RotationSpeed>k__BackingField: 2
   <JumpForce>k__BackingField: 5
-  <StoppedMovementMessage>k__BackingField: {fileID: 286539147}
+  <Rb>k__BackingField: {fileID: 1197224882}
   <BulletPrefab>k__BackingField: {fileID: 980901300899285409, guid: 514d5d834cc39eb4897eb82c3a92dce0, type: 3}
+  <BulletSpawnPoint>k__BackingField: {fileID: 1556065385}
 --- !u!54 &1197224882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1134,19 +1147,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1197224883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197224876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927dc940b90ca1c4d853dca4932cd8bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 1556065385}
 --- !u!1 &1204840517
 GameObject:
   m_ObjectHideFlags: 0

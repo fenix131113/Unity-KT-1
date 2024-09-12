@@ -34,13 +34,13 @@ namespace PlayerSystem
 		public void InvokeDisableMovement()
 		{
 			if (_playerMovement.CanControl)
-				_playerMovement.SwitchMovementControl(_player.StoppedMovementMessage);
+				_playerMovement.SwitchMovementControl();
 		}
 
 		public void InvokeEnableMovement()
 		{
 			if (!_playerMovement.CanControl)
-				_playerMovement.SwitchMovementControl(_player.StoppedMovementMessage);
+				_playerMovement.SwitchMovementControl();
 		}
 
 		public void InvokeShoot()
@@ -48,7 +48,7 @@ namespace PlayerSystem
 			if (!_playerMovement.CanControl)
 				return;
 
-			_playerCombat.Shoot(_player.BulletPrefab);
+			_playerCombat.Shoot(_player.BulletPrefab, _player.BulletSpawnPoint);
 		}
 	}
 }
